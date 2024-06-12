@@ -1,0 +1,21 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model RequestLog {
+  body               Json?
+  createdAt          DateTime  @default(now())
+  headers            Json?
+  id                 String    @id @default(cuid())
+  method             String?
+  responseBody       Json?
+  responseStatusCode Int?
+  timestamp          DateTime?
+  updatedAt          DateTime  @updatedAt
+  url                String?
+}
